@@ -32,16 +32,15 @@ var (
 
 // need to setup environment variable "CONF_PROVIDER_FILE_PATH" to "conf/server.yml" before run
 func main() {
-
+	ctx := context.Background()
 	err := config.Load()
 	if err != nil {
 		return
 	}
 	userService := new(service.UserService)
-	gxlog.CInfo("\n\n\nstart to test dubbo")
 	// time.Sleep(3 * time.Second)
 	user := &domain.User{}
-	err = userService.GetUser(context.TODO(), "zhaoyunxing", user)
+	err = userService.GetUser(ctx, "zhaoyunxing", user)
 	if err != nil {
 		gxlog.CError("error: %v\n", err)
 		os.Exit(1)
