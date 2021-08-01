@@ -1,13 +1,14 @@
 dubbo:
   registries:
     zk:
-      timeout: 3s
+      timeout: 60s
       address: zookeeper://127.0.0.1:2181
   protocols:
     dubbo:
       name: dubbo
-      port: 20000
+      port: 2000
   consumer:
+    check: false
     references:
       UserService:
         registry: zk

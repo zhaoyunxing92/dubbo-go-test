@@ -8,16 +8,14 @@ import (
 	"dubbo.apache.org/dubbo-go/v3/config"
 )
 
-
 func init() {
 	config.SetConsumerService(new(UserService))
 }
 
 type UserService struct {
-	GetUser func(ctx context.Context, req []interface{}, rsp *domain.User) error
+	GetUser func(ctx context.Context, name string, rsp *domain.User) error
 }
 
 func (u UserService) Reference() string {
 	return "UserService"
 }
-

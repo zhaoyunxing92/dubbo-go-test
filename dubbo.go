@@ -10,6 +10,7 @@ import (
 )
 import (
 	"zhaoyunxing92/dubbo-go-test/domain"
+	_ "zhaoyunxing92/dubbo-go-test/reference"
 	"zhaoyunxing92/dubbo-go-test/service"
 )
 
@@ -28,7 +29,6 @@ import (
 var (
 	survivalTimeout = int(3e9)
 )
-var userService = new(service.UserService)
 
 // need to setup environment variable "CONF_PROVIDER_FILE_PATH" to "conf/server.yml" before run
 func main() {
@@ -37,9 +37,11 @@ func main() {
 	if err != nil {
 		return
 	}
+	userService := new(service.UserService)
 	gxlog.CInfo("\n\n\nstart to test dubbo")
+	// time.Sleep(3 * time.Second)
 	user := &domain.User{}
-	err = userService.GetUser(context.TODO(), []interface{}{"A001"}, user)
+	err = userService.GetUser(context.TODO(), "zhaoyunxing", user)
 	if err != nil {
 		gxlog.CError("error: %v\n", err)
 		os.Exit(1)

@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dubbo" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="dubbo-go-test" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="PACKAGE" />
+    <package value="zhaoyunxing92/dubbo-go-test" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/dubbo.go" />
+    <method v="2" />
+  </configuration>
+</component>
