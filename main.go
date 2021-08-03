@@ -21,6 +21,7 @@ import (
 	"dubbo.apache.org/dubbo-go/v3/config"
 	_ "dubbo.apache.org/dubbo-go/v3/filter/filter_impl"
 	_ "dubbo.apache.org/dubbo-go/v3/protocol/dubbo"
+	_ "dubbo.apache.org/dubbo-go/v3/registry/nacos"
 	_ "dubbo.apache.org/dubbo-go/v3/registry/protocol"
 	_ "dubbo.apache.org/dubbo-go/v3/registry/zookeeper"
 	gxlog "github.com/dubbogo/gost/log"
@@ -39,7 +40,7 @@ func main() {
 		return
 	}
 
-	// time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 	user := &domain.User{}
 	err = userService.GetUser(context.Background(), "zhaoyunxing", user)
 	if err != nil {
