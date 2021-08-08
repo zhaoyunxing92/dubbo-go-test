@@ -8,4 +8,4 @@ require (
 	github.com/dubbogo/gost v1.11.13
 )
 
-replace dubbo.apache.org/dubbo-go/v3 => d:/github/go/dubbo-go
+replace dubbo.apache.org/dubbo-go/v3 => d:/github/go/dubbo-go-config-cenhance
