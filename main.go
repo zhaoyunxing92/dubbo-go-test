@@ -9,21 +9,13 @@ import (
 	"time"
 )
 import (
-	"zhaoyunxing92/dubbo-go-test/domain"
 	_ "zhaoyunxing92/dubbo-go-test/reference"
 	"zhaoyunxing92/dubbo-go-test/service"
 )
 
 import (
-	_ "dubbo.apache.org/dubbo-go/v3/cluster/cluster_impl"
-	_ "dubbo.apache.org/dubbo-go/v3/cluster/loadbalance"
-	_ "dubbo.apache.org/dubbo-go/v3/common/proxy/proxy_factory"
 	"dubbo.apache.org/dubbo-go/v3/config"
-	_ "dubbo.apache.org/dubbo-go/v3/filter/filter_impl"
-	_ "dubbo.apache.org/dubbo-go/v3/protocol/dubbo"
-	_ "dubbo.apache.org/dubbo-go/v3/registry/nacos"
-	_ "dubbo.apache.org/dubbo-go/v3/registry/protocol"
-	_ "dubbo.apache.org/dubbo-go/v3/registry/zookeeper"
+	_ "dubbo.apache.org/dubbo-go/v3/imports"
 	gxlog "github.com/dubbogo/gost/log"
 )
 
@@ -31,18 +23,19 @@ var (
 	survivalTimeout = int(3e9)
 )
 var userService = new(service.UserService)
+
 // need to setup environment variable "CONF_PROVIDER_FILE_PATH" to "conf/server.yml" before run
 func main() {
 	config.SetConsumerService(userService)
 
-	err := config.Load()
+	err := config.Load(config.WithPath("./conf/dubbogo.yaml"))
 	if err != nil {
 		return
 	}
 
 	time.Sleep(3 * time.Second)
-	user := &domain.User{}
-	err = userService.GetUser(context.Background(), "zhaoyunxing", user)
+
+	user, err := userService.GetUser(context.Background(), "zhaoyunxing")
 	if err != nil {
 		gxlog.CError("error: %v\n", err)
 		os.Exit(1)

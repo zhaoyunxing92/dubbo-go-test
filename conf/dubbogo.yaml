@@ -1,8 +1,8 @@
 dubbo:
   registries:
-    zk:
+    nacos:
       timeout: 60s
-      address: nacos://127.0.0.1:8848
+      address: nacos://192.168.56.100:8848
   protocols:
     dubbo:
       name: dubbo
@@ -11,7 +11,7 @@ dubbo:
     check: false
     references:
       UserService:
-        registry: zk
+        registry: nacos
         protocol: dubbo
         interface: org.apache.dubbo.UserService
         cluster: failover
@@ -20,10 +20,10 @@ dubbo:
             retries: 3
   provider:
     register: true
-    registry: zk
+    registry: nacos
     services:
       UserService:
-        registry: zk
+        registry: nacos
         protocol: dubbo
         interface: org.apache.dubbo.UserService
         loadbalance: random

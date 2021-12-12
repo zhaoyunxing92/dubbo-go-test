@@ -6,7 +6,7 @@ import (
 )
 
 type UserService struct {
-	GetUser func(ctx context.Context, name string, rsp *domain.User) error
+	GetUser func(ctx context.Context, name string) (*domain.User, error)
 }
 
 func (u UserService) Reference() string {
